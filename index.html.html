@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gandhar Joshi — Program Management & Applications</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  /* ── Reset & Base ── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy:      #1A2E46;
+    --navy-deep: #0F1E30;
+    --steel:     #2A5298;
+    --gold:      #B8922A;
+    --gold-lt:   #F5E8C8;
+    --cream:     #F8F6F1;
+    --white:     #FFFFFF;
+    --ink:       #1C1C1C;
+    --muted:     #5A6475;
+    --rule:      #D8D4CC;
+    --tag-bg:    #E8EEF7;
+    --tag-fg:    #2A5298;
+
+    --font-display: 'DM Serif Display', Georgia, serif;
+    --font-body:    'Inter', system-ui, sans-serif;
+    --font-mono:    'JetBrains Mono', monospace;
+
+    --max-w: 1100px;
+    --section-pad: 96px 24px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--white);
+    color: var(--ink);
+    line-height: 1.7;
+    font-size: 16px;
+  }
+
+  /* ── Typography ── */
+  h1, h2, h3, h4 { font-family: var(--font-display); line-height: 1.2; }
+  h1 { font-size: clamp(2.8rem, 7vw, 5.5rem); letter-spacing: -0.02em; }
+  h2 { font-size: clamp(1.8rem, 4vw, 2.8rem); }
+  h3 { font-size: 1.3rem; }
+  p  { color: var(--muted); line-height: 1.8; }
+
+  .mono { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold); }
+
+  /* ── Layout ── */
+  .container { max-width: var(--max-w); margin: 0 auto; padding: 0 24px; }
+  section { padding: var(--section-pad); }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(26, 46, 70, 0.96);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .nav-inner {
+    max-width: var(--max-w); margin: 0 auto; padding: 0 24px;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+  }
+  .nav-logo {
+    font-family: var(--font-display);
+    font-size: 1.2rem; color: var(--white);
+    text-decoration: none; letter-spacing: -0.01em;
+  }
+  .nav-logo span { color: var(--gold); }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a {
+    color: rgba(255,255,255,0.7); text-decoration: none;
+    font-size: 0.875rem; font-weight: 500; letter-spacing: 0.02em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--white); }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    background: var(--navy-deep);
+    display: flex; flex-direction: column; justify-content: center;
+    position: relative; overflow: hidden;
+    padding: 120px 24px 80px;
+  }
+  .hero-grid {
+    max-width: var(--max-w); margin: 0 auto; width: 100%;
+    display: grid; grid-template-columns: 1fr 340px; gap: 80px; align-items: center;
+  }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    margin-bottom: 24px;
+  }
+  .hero-eyebrow-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--gold); animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+  .hero-title { color: var(--white); margin-bottom: 8px; }
+  .hero-title em { color: var(--gold); font-style: italic; }
+  .hero-sub {
+    font-size: 1.05rem; color: rgba(255,255,255,0.55);
+    margin: 20px 0 36px; max-width: 520px;
+  }
+  .hero-stats {
+    display: flex; gap: 40px; margin-top: 48px;
+    padding-top: 40px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+  .stat-val {
+    font-family: var(--font-display);
+    font-size: 2.2rem; color: var(--white); line-height: 1;
+  }
+  .stat-val span { color: var(--gold); }
+  .stat-label { font-size: 0.78rem; color: rgba(255,255,255,0.45); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.06em; }
+  .hero-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 16px; padding: 32px;
+    backdrop-filter: blur(8px);
+  }
+  .hero-photo-placeholder {
+    width: 100%; aspect-ratio: 1;
+    background: linear-gradient(135deg, rgba(42,82,152,0.4), rgba(184,146,42,0.2));
+    border-radius: 12px; margin-bottom: 20px;
+    display: flex; align-items: center; justify-content: center;
+    border: 1px solid rgba(255,255,255,0.08);
+    font-size: 4rem; color: rgba(255,255,255,0.3);
+  }
+  .hero-card-name {
+    color: var(--white); font-family: var(--font-display);
+    font-size: 1.2rem; margin-bottom: 4px;
+  }
+  .hero-card-role { color: rgba(255,255,255,0.5); font-size: 0.85rem; }
+  .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 32px; }
+  .btn-primary {
+    background: var(--gold); color: var(--navy-deep);
+    padding: 12px 28px; border-radius: 6px;
+    font-weight: 600; font-size: 0.875rem;
+    text-decoration: none; transition: all 0.2s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: #D4A832; transform: translateY(-1px); }
+  .btn-ghost {
+    border: 1px solid rgba(255,255,255,0.25); color: rgba(255,255,255,0.8);
+    padding: 12px 28px; border-radius: 6px;
+    font-weight: 500; font-size: 0.875rem;
+    text-decoration: none; transition: all 0.2s;
+    display: inline-block;
+  }
+  .btn-ghost:hover { border-color: rgba(255,255,255,0.6); color: var(--white); }
+
+  /* Geometric accent */
+  .hero-geo {
+    position: absolute; right: -120px; bottom: -80px;
+    width: 500px; height: 500px;
+    border: 1px solid rgba(184,146,42,0.12);
+    border-radius: 50%; pointer-events: none;
+  }
+  .hero-geo::after {
+    content: '';
+    position: absolute; inset: 40px;
+    border: 1px solid rgba(184,146,42,0.08);
+    border-radius: 50%;
+  }
+
+  /* ── ABOUT ── */
+  #about { background: var(--cream); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+  .section-label {
+    font-family: var(--font-mono); font-size: 0.72rem;
+    text-transform: uppercase; letter-spacing: 0.12em;
+    color: var(--gold); margin-bottom: 12px; display: block;
+  }
+  .section-title { color: var(--navy); margin-bottom: 24px; }
+  .about-text p { margin-bottom: 16px; }
+  .pillars { display: flex; flex-direction: column; gap: 16px; margin-top: 8px; }
+  .pillar {
+    background: var(--white); border-radius: 10px;
+    padding: 20px 22px; border-left: 3px solid var(--gold);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+  .pillar-title { font-weight: 600; color: var(--navy); font-size: 0.95rem; margin-bottom: 4px; }
+  .pillar-desc { font-size: 0.875rem; color: var(--muted); line-height: 1.6; }
+
+  /* ── METRICS ── */
+  #metrics { background: var(--navy); }
+  .metrics-header { text-align: center; margin-bottom: 60px; }
+  .metrics-header .section-label { color: var(--gold); }
+  .metrics-header h2 { color: var(--white); }
+  .metrics-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+    background: rgba(255,255,255,0.06); border-radius: 12px; overflow: hidden;
+  }
+  .metric-cell {
+    background: var(--navy-deep); padding: 40px 32px; text-align: center;
+    transition: background 0.2s;
+  }
+  .metric-cell:hover { background: rgba(42,82,152,0.3); }
+  .metric-num {
+    font-family: var(--font-display); font-size: 3rem;
+    color: var(--white); line-height: 1;
+    margin-bottom: 8px;
+  }
+  .metric-num span { color: var(--gold); }
+  .metric-desc { font-size: 0.85rem; color: rgba(255,255,255,0.45); text-transform: uppercase; letter-spacing: 0.06em; }
+
+  /* ── TIMELINE ── */
+  #timeline { background: var(--white); }
+  .timeline-header { margin-bottom: 60px; }
+  .timeline-wrap { position: relative; padding-left: 32px; }
+  .timeline-wrap::before {
+    content: ''; position: absolute; left: 0; top: 8px; bottom: 8px;
+    width: 1px; background: var(--rule);
+  }
+  .timeline-item { position: relative; margin-bottom: 48px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .tl-dot {
+    position: absolute; left: -38px; top: 6px;
+    width: 12px; height: 12px; border-radius: 50%;
+    background: var(--gold); border: 2px solid var(--white);
+    box-shadow: 0 0 0 3px rgba(184,146,42,0.2);
+  }
+  .tl-dot.navy { background: var(--navy); box-shadow: 0 0 0 3px rgba(26,46,70,0.15); }
+  .tl-year { font-family: var(--font-mono); font-size: 0.75rem; color: var(--gold); letter-spacing: 0.08em; margin-bottom: 6px; }
+  .tl-role { font-family: var(--font-display); font-size: 1.15rem; color: var(--navy); margin-bottom: 4px; }
+  .tl-company { font-size: 0.875rem; font-weight: 500; color: var(--muted); margin-bottom: 10px; }
+  .tl-desc { font-size: 0.9rem; color: var(--muted); }
+  .tl-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .tag {
+    font-size: 0.72rem; padding: 4px 10px; border-radius: 4px;
+    background: var(--tag-bg); color: var(--tag-fg); font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+  .tag.gold { background: var(--gold-lt); color: var(--gold); }
+
+  /* ── ACHIEVEMENTS ── */
+  #achievements { background: var(--cream); }
+  .ach-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .ach-card {
+    background: var(--white); border-radius: 12px;
+    padding: 28px; border: 1px solid var(--rule);
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .ach-card:hover { box-shadow: 0 8px 24px rgba(26,46,70,0.1); transform: translateY(-2px); }
+  .ach-icon { font-size: 1.6rem; margin-bottom: 14px; }
+  .ach-title { font-weight: 600; color: var(--navy); font-size: 1rem; margin-bottom: 8px; }
+  .ach-text { font-size: 0.875rem; color: var(--muted); line-height: 1.6; }
+
+  /* ── COMPETENCIES ── */
+  #competencies { background: var(--white); }
+  .comp-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .comp-item {
+    padding: 20px; border: 1px solid var(--rule);
+    border-radius: 8px; text-align: center;
+    font-size: 0.875rem; font-weight: 500; color: var(--navy);
+    transition: all 0.2s;
+  }
+  .comp-item:hover { background: var(--navy); color: var(--white); border-color: var(--navy); }
+
+  /* ── ROADMAP ── */
+  #roadmap { background: var(--navy-deep); }
+  .roadmap-header { text-align: center; margin-bottom: 60px; }
+  .roadmap-header h2 { color: var(--white); }
+  .phases { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .phase-card {
+    border-radius: 12px; padding: 32px;
+    border: 1px solid rgba(255,255,255,0.08);
+    position: relative; overflow: hidden;
+  }
+  .phase-card.p1 { background: rgba(42,82,152,0.2); }
+  .phase-card.p2 { background: rgba(15,110,86,0.2); }
+  .phase-card.p3 { background: rgba(184,146,42,0.15); }
+  .phase-num { font-family: var(--font-mono); font-size: 0.72rem; color: rgba(255,255,255,0.4); letter-spacing: 0.1em; margin-bottom: 12px; }
+  .phase-years { font-family: var(--font-display); font-size: 1.4rem; color: var(--white); margin-bottom: 6px; }
+  .phase-target { font-size: 0.875rem; color: var(--gold); margin-bottom: 16px; font-weight: 500; }
+  .phase-desc { font-size: 0.85rem; color: rgba(255,255,255,0.5); line-height: 1.7; }
+  .phase-divider { height: 1px; background: rgba(255,255,255,0.08); margin: 16px 0; }
+
+  /* ── CERTIFICATIONS ── */
+  #certifications { background: var(--cream); }
+  .cert-table { width: 100%; border-collapse: collapse; }
+  .cert-table th {
+    text-align: left; padding: 12px 16px;
+    font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--muted); border-bottom: 2px solid var(--rule);
+    font-family: var(--font-mono);
+  }
+  .cert-table td { padding: 16px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  .cert-table tr:last-child td { border-bottom: none; }
+  .cert-table tr:hover td { background: rgba(42,82,152,0.03); }
+  .cert-year { font-family: var(--font-mono); font-size: 0.8rem; color: var(--gold); }
+  .cert-name { font-weight: 600; color: var(--navy); font-size: 0.9rem; }
+  .cert-provider { font-size: 0.8rem; color: var(--muted); margin-top: 2px; }
+  .cert-status {
+    display: inline-block; font-size: 0.72rem; padding: 3px 8px;
+    border-radius: 4px; font-weight: 500;
+  }
+  .status-planned { background: var(--tag-bg); color: var(--tag-fg); }
+  .status-done { background: #E6F4EE; color: #0F6E56; }
+  .status-progress { background: var(--gold-lt); color: var(--gold); }
+
+  /* ── GALLERY ── */
+  #gallery { background: var(--white); }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto auto;
+    gap: 16px;
+  }
+  .gallery-item {
+    background: var(--cream); border-radius: 10px;
+    aspect-ratio: 4/3; display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    border: 1px dashed var(--rule); color: var(--muted);
+    font-size: 0.85rem; text-align: center; padding: 20px;
+    transition: background 0.2s;
+  }
+  .gallery-item:hover { background: var(--tag-bg); }
+  .gallery-item.featured {
+    grid-column: span 2; grid-row: span 1;
+    aspect-ratio: 16/7;
+  }
+  .gallery-icon { font-size: 1.8rem; margin-bottom: 8px; opacity: 0.4; }
+  .gallery-caption { font-size: 0.78rem; color: var(--muted); margin-top: 6px; }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--navy); }
+  .contact-inner { max-width: 700px; margin: 0 auto; text-align: center; }
+  #contact h2 { color: var(--white); margin-bottom: 16px; }
+  #contact p { color: rgba(255,255,255,0.5); margin-bottom: 48px; }
+  .contact-links { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 48px; }
+  .contact-link {
+    display: flex; align-items: center; gap: 8px;
+    padding: 14px 24px; border-radius: 8px;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: rgba(255,255,255,0.8); text-decoration: none;
+    font-size: 0.875rem; transition: all 0.2s;
+  }
+  .contact-link:hover { background: rgba(255,255,255,0.12); color: var(--white); }
+  .contact-location { font-size: 0.85rem; color: rgba(255,255,255,0.35); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--navy-deep); padding: 28px 24px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    text-align: center;
+  }
+  footer p { font-size: 0.8rem; color: rgba(255,255,255,0.25); }
+  footer span { color: var(--gold); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .hero-card { display: none; }
+    .about-grid { grid-template-columns: 1fr; gap: 40px; }
+    .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+    .phases { grid-template-columns: 1fr; }
+    .comp-grid { grid-template-columns: repeat(2, 1fr); }
+    .ach-grid { grid-template-columns: 1fr; }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    .gallery-item.featured { grid-column: span 2; }
+    .nav-links { display: none; }
+    .hero-stats { gap: 24px; flex-wrap: wrap; }
+  }
+
+  @media (max-width: 600px) {
+    :root { --section-pad: 64px 20px; }
+    .metrics-grid { grid-template-columns: 1fr; }
+    .gallery-grid { grid-template-columns: 1fr; }
+    .gallery-item.featured { grid-column: span 1; }
+    .comp-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#hero" class="nav-logo">GJ<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#timeline">Journey</a></li>
+      <li><a href="#achievements">Achievements</a></li>
+      <li><a href="#roadmap">Roadmap</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-geo"></div>
+  <div class="hero-grid">
+    <div>
+      <div class="hero-eyebrow">
+        <div class="hero-eyebrow-dot"></div>
+        <span class="mono">Manager — Program Management & Applications</span>
+      </div>
+      <h1 class="hero-title">Gandhar<br><em>Joshi.</em></h1>
+      <p class="hero-sub">7 years turning complex industrial programs into delivered systems. Application consulting, cross-continental engineering, and regulatory compliance — all under one roof.</p>
+      <div class="hero-cta">
+        <a href="#about" class="btn-primary">View Profile</a>
+        <a href="mailto:gandharjoshi@gmail.com" class="btn-ghost">Get in Touch</a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="stat-val">₹3<span>Cr+</span></div>
+          <div class="stat-label">Programs Delivered</div>
+        </div>
+        <div>
+          <div class="stat-val">80<span>+</span></div>
+          <div class="stat-label">Systems Executed</div>
+        </div>
+        <div>
+          <div class="stat-val">4<span>×</span></div>
+          <div class="stat-label">Best Employee</div>
+        </div>
+        <div>
+          <div class="stat-val">7<span>+</span></div>
+          <div class="stat-label">Years at Sesotec</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="hero-photo-placeholder">👤</div>
+      <div class="hero-card-name">Gandhar Joshi</div>
+      <div class="hero-card-role">Manager — Program Management & Applications<br>Sesotec India Pvt. Ltd · Pune</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text">
+        <span class="section-label">About</span>
+        <h2 class="section-title">The bridge between engineering precision and operational delivery.</h2>
+        <p>I'm a Program Management and Applications Manager at Sesotec India, with 7+ years of end-to-end ownership across conveyor and inspection system programs. I was promoted to Manager in April 2026 — having progressed through five internal roles since joining as a Technical Support Engineer in July 2019.</p>
+        <p style="margin-top:16px;">My work sits at the intersection of three disciplines: running complex multi-crore hardware programs, advising customers on whether and how our machines fit their production lines, and navigating India's regulatory frameworks — including independently securing AERB Type Approval for the Raycon EX2.</p>
+        <p style="margin-top:16px;">I hold a Post-Graduate Diploma in ML & AI from IIIT Bangalore and am actively working toward applying data-driven decision-making in operations leadership. Currently pursuing Six Sigma Green Belt (CSSC-accredited, lifetime validity).</p>
+      </div>
+      <div class="pillars">
+        <span class="section-label">Five Pillars of Value</span>
+        <div class="pillar">
+          <div class="pillar-title">Single-Threaded Program Ownership</div>
+          <div class="pillar-desc">One accountable owner across engineering, production, quality, and vendor supply chain — eliminating cross-departmental silos.</div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-title">Application Consulting</div>
+          <div class="pillar-desc">Primary technical advisor between customers and product — translating production line requirements into machine fitment decisions.</div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-title">Regulatory & Compliance Mastery</div>
+          <div class="pillar-desc">Independently navigating AERB frameworks to legally unlock commercial deployment across India.</div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-title">Cross-Continental Engineering Alignment</div>
+          <div class="pillar-desc">Auditing German R&D blueprints and executing critical design rectifications for the Indian manufacturing ecosystem.</div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-title">Process Automation & Industry 4.0</div>
+          <div class="pillar-desc">Building Power Automate, SAP, and Salesforce ecosystems that replace manual reporting with real-time leadership visibility.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- METRICS -->
+<section id="metrics">
+  <div class="container">
+    <div class="metrics-header">
+      <span class="section-label">Proof of Impact</span>
+      <h2>Numbers that tell the story.</h2>
+    </div>
+    <div class="metrics-grid">
+      <div class="metric-cell">
+        <div class="metric-num">₹3<span>Cr+</span></div>
+        <div class="metric-desc">Programs Delivered</div>
+      </div>
+      <div class="metric-cell">
+        <div class="metric-num">80<span>+</span></div>
+        <div class="metric-desc">Systems Executed</div>
+      </div>
+      <div class="metric-cell">
+        <div class="metric-num">₹75<span>.6L</span></div>
+        <div class="metric-desc">Spares & Services Revenue</div>
+      </div>
+      <div class="metric-cell">
+        <div class="metric-num">~30<span>%</span></div>
+        <div class="metric-desc">Reduction in Escalations</div>
+      </div>
+      <div class="metric-cell">
+        <div class="metric-num">~40<span>%</span></div>
+        <div class="metric-desc">Reduction in Rework</div>
+      </div>
+      <div class="metric-cell">
+        <div class="metric-num">15<span>+</span></div>
+        <div class="metric-desc">Customers Retained via Alt. Solutions</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section id="timeline">
+  <div class="container">
+    <div class="timeline-header">
+      <span class="section-label">Career Journey</span>
+      <h2 class="section-title" style="color:var(--navy);">Seven years. Five roles. One company.</h2>
+    </div>
+    <div class="timeline-wrap">
+
+      <div class="timeline-item">
+        <div class="tl-dot"></div>
+        <div class="tl-year">APR 2026 — PRESENT</div>
+        <div class="tl-role">Manager — Program Management & Applications</div>
+        <div class="tl-company">Sesotec India Pvt. Ltd · Pune · On-site</div>
+        <div class="tl-desc">Leading end-to-end program delivery, application consulting, compliance readiness, and team development. Managing cross-functional teams across engineering, quality, production, and vendor supply chain.</div>
+        <div class="tl-tags">
+          <span class="tag gold">Current Role</span>
+          <span class="tag">Program Management</span>
+          <span class="tag">Application Consulting</span>
+          <span class="tag">AERB Compliance</span>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="tl-dot navy"></div>
+        <div class="tl-year">APR 2024 — MAR 2026 · 2 YRS</div>
+        <div class="tl-role">Assistant Manager — Projects, Planning & Applications</div>
+        <div class="tl-company">Sesotec India Pvt. Ltd · Pune · On-site</div>
+        <div class="tl-desc">Owned ₹3 Cr+ programs across 80+ systems. Identified the Raycon EX2 blueprint discrepancy. Secured AERB Type Approval. Built Power Automate documentation platform. Represented Sesotec India in Germany 4 times.</div>
+        <div class="tl-tags">
+          <span class="tag">SAP & Salesforce</span>
+          <span class="tag">Power Automate</span>
+          <span class="tag">AERB Type Approval</span>
+          <span class="tag">Vendor Management</span>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="tl-dot navy"></div>
+        <div class="tl-year">APR 2021 — MAR 2024 · 3 YRS</div>
+        <div class="tl-role">Senior Project and Application Engineer</div>
+        <div class="tl-company">Sesotec India Pvt. Ltd · Pune</div>
+        <div class="tl-desc">Lead service coordinator and operations & executions department coordinator. Managed cross-functional project execution, customer application consulting, and ERP workflow restructuring.</div>
+        <div class="tl-tags">
+          <span class="tag">Project Execution</span>
+          <span class="tag">Service Coordination</span>
+          <span class="tag">Tableau</span>
+          <span class="tag">Business Analysis</span>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="tl-dot navy"></div>
+        <div class="tl-year">AUG 2019 — MAR 2021 · 1 YR 8 MOS</div>
+        <div class="tl-role">Application Engineer</div>
+        <div class="tl-company">Sesotec India Pvt. Ltd · Pune</div>
+        <div class="tl-desc">Customer application feasibility assessment, machine fitment consulting, and early-stage program coordination. Built foundation in inspection system applications and stakeholder management.</div>
+        <div class="tl-tags">
+          <span class="tag">Application Engineering</span>
+          <span class="tag">Microsoft Power BI</span>
+          <span class="tag">Stakeholder Management</span>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="tl-dot navy"></div>
+        <div class="tl-year">JUL 2019 · 1 MO</div>
+        <div class="tl-role">Technical Support Engineer</div>
+        <div class="tl-company">Sesotec India Pvt. Ltd · Pune/Pimpri-Chinchwad</div>
+        <div class="tl-desc">Entry point at Sesotec India. Salesforce-based support operations.</div>
+        <div class="tl-tags"><span class="tag">Salesforce</span></div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="tl-dot navy"></div>
+        <div class="tl-year">2021 — 2022</div>
+        <div class="tl-role">Post Graduate Diploma — Machine Learning & AI</div>
+        <div class="tl-company">UpGrad / IIIT Bangalore</div>
+        <div class="tl-desc">Completed while working full-time at Sesotec India. Credential earned; actively seeking to apply ML & AI skills in a professional context.</div>
+        <div class="tl-tags"><span class="tag">ML & AI</span><span class="tag">IIIT Bangalore</span></div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="tl-dot navy"></div>
+        <div class="tl-year">2015 — 2019</div>
+        <div class="tl-role">B.E. — Electronics & Telecommunication Engineering</div>
+        <div class="tl-company">Government College of Engineering, Aurangabad</div>
+        <div class="tl-desc">Foundation in electronics, signal processing, and telecommunication systems. Internships at BSNL (2018) and Modi Innovations — PLC programming and industrial automation (2017).</div>
+        <div class="tl-tags"><span class="tag">Electronics & Telecom</span><span class="tag">PLC Programming</span><span class="tag">BSNL</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+  <div class="container">
+    <span class="section-label">Highlights</span>
+    <h2 class="section-title" style="color:var(--navy);margin-bottom:48px;">Key Achievements</h2>
+    <div class="ach-grid">
+      <div class="ach-card">
+        <div class="ach-icon">🇩🇪</div>
+        <div class="ach-title">Cross-Continental Engineering Audit — Raycon EX2</div>
+        <div class="ach-text">Identified a critical blueprint design discrepancy in the Raycon EX2 developed by the German R&D team. Successfully escalated and obtained cross-continental engineering rectification — preventing costly field failure before commercial deployment.</div>
+      </div>
+      <div class="ach-card">
+        <div class="ach-icon">📋</div>
+        <div class="ach-title">AERB Type Approval — Raycon EX2</div>
+        <div class="ach-text">Independently authored the full compliance framework for India's Atomic Energy Regulatory Board. Secured 3-year Type Approval with zero rejections — enabling commercial deployment of the Raycon EX2 across India.</div>
+      </div>
+      <div class="ach-card">
+        <div class="ach-icon">⚡</div>
+        <div class="ach-title">Power Automate Platform — Program Visibility</div>
+        <div class="ach-text">Built a centralised documentation and planning platform using Power Automate — replacing manual reporting and saving ~5 hrs/week while giving global teams real-time visibility into program health and factory bottlenecks.</div>
+      </div>
+      <div class="ach-card">
+        <div class="ach-icon">🏆</div>
+        <div class="ach-title">Best Employee — 4 Times</div>
+        <div class="ach-text">Awarded Best Employee four times for process improvement initiatives and vendor development outcomes that produced measurable impact on program timelines, rework reduction (~40%), and cross-team escalation management (~30% reduction).</div>
+      </div>
+      <div class="ach-card">
+        <div class="ach-icon">✈️</div>
+        <div class="ach-title">Germany — Train the Trainer (4 Visits)</div>
+        <div class="ach-text">Represented Sesotec India in Germany four times under the Train the Trainer initiative. Integrated global planning best practices into local program frameworks, directly improving cross-border coordination efficiency.</div>
+      </div>
+      <div class="ach-card">
+        <div class="ach-icon">🚀</div>
+        <div class="ach-title">Fastest Promotion — Assistant Manager</div>
+        <div class="ach-text">Promoted to Assistant Manager within 3.5 years — the fastest promotion in the Sesotec India team at that time. Further promoted to Manager in April 2026, completing a 5-role progression in 7 years.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPETENCIES -->
+<section id="competencies">
+  <div class="container">
+    <span class="section-label">Skills</span>
+    <h2 class="section-title" style="color:var(--navy);margin-bottom:48px;">Core Competencies</h2>
+    <div class="comp-grid">
+      <div class="comp-item">Program Execution & Planning</div>
+      <div class="comp-item">Application Consulting</div>
+      <div class="comp-item">Regulatory Compliance (AERB)</div>
+      <div class="comp-item">Stakeholder Management</div>
+      <div class="comp-item">Risk & Change Management</div>
+      <div class="comp-item">SAP & Salesforce</div>
+      <div class="comp-item">Power Automate</div>
+      <div class="comp-item">Vendor Coordination</div>
+      <div class="comp-item">Demand Forecasting</div>
+      <div class="comp-item">Process Optimisation</div>
+      <div class="comp-item">Documentation & Governance</div>
+      <div class="comp-item">Data & Reporting</div>
+      <div class="comp-item">Cross-functional Leadership</div>
+      <div class="comp-item">ERP Workflow Restructuring</div>
+      <div class="comp-item">Service Gatekeeping</div>
+      <div class="comp-item">ML & AI (IIIT-B)</div>
+    </div>
+  </div>
+</section>
+
+<!-- ROADMAP -->
+<section id="roadmap">
+  <div class="container">
+    <div class="roadmap-header">
+      <span class="section-label">10-Year Vision</span>
+      <h2>The road to C-suite.</h2>
+      <p style="color:rgba(255,255,255,0.45);margin-top:12px;font-size:0.95rem;">Target: COO / Managing Director / Technical VP by 2036.</p>
+    </div>
+    <div class="phases">
+      <div class="phase-card p1">
+        <div class="phase-num">PHASE 01</div>
+        <div class="phase-years">2026–2029</div>
+        <div class="phase-target">Manager → Senior Manager</div>
+        <div class="phase-divider"></div>
+        <div class="phase-desc">Build systems that work without you. Performance is measured by how smoothly the department runs in your absence — not by how much you personally execute.</div>
+        <div class="tl-tags" style="margin-top:16px;">
+          <span class="tag">Six Sigma Green Belt</span>
+          <span class="tag">Financial Accounting (IIM)</span>
+          <span class="tag">Executive Presence</span>
+        </div>
+      </div>
+      <div class="phase-card p2">
+        <div class="phase-num">PHASE 02</div>
+        <div class="phase-years">2029–2032</div>
+        <div class="phase-target">Director of Operations / VP Engineering Ops</div>
+        <div class="phase-divider"></div>
+        <div class="phase-desc">Manage managers. Align department goals with global corporate strategy. Own P&L of a business unit. Present quarterly metrics directly to MD or international board.</div>
+        <div class="tl-tags" style="margin-top:16px;">
+          <span class="tag">MIT Digital Transformation</span>
+          <span class="tag">Strategic Management</span>
+          <span class="tag">Data Analytics</span>
+        </div>
+      </div>
+      <div class="phase-card p3">
+        <div class="phase-num">PHASE 03</div>
+        <div class="phase-years">2032–2036</div>
+        <div class="phase-target">COO / Chief Product Officer / MD</div>
+        <div class="phase-divider"></div>
+        <div class="phase-desc">Own the outcome of the entire business. Define competitive strategy. 60% of time on external relationships — clients, regulators, board, investors. IIMA Executive Programme.</div>
+        <div class="tl-tags" style="margin-top:16px;">
+          <span class="tag">IIM Ahmedabad ELP</span>
+          <span class="tag">AI Strategy (MIT)</span>
+          <span class="tag">Corporate Governance</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="container">
+    <span class="section-label">Learning Roadmap</span>
+    <h2 class="section-title" style="color:var(--navy);margin-bottom:48px;">Certifications — 10-Year Plan</h2>
+    <table class="cert-table">
+      <thead>
+        <tr>
+          <th>Year</th>
+          <th>Certification</th>
+          <th>Provider</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="cert-year">YR 1</span></td>
+          <td><div class="cert-name">Six Sigma Green Belt (CSSC)</div><div class="cert-provider">Lifetime validity — no renewal</div></td>
+          <td>Contiprove India</td>
+          <td><span class="cert-status status-progress">In Progress</span></td>
+        </tr>
+        <tr>
+          <td><span class="cert-year">YR 1</span></td>
+          <td><div class="cert-name">Financial Accounting for Non-Finance Managers</div><div class="cert-provider">IIM Bangalore / SWAYAM</div></td>
+          <td>IIMB / SWAYAM</td>
+          <td><span class="cert-status status-planned">Planned</span></td>
+        </tr>
+        <tr>
+          <td><span class="cert-year">YR 2</span></td>
+          <td><div class="cert-name">Business Communication & Executive Presence</div></td>
+          <td>LinkedIn Learning</td>
+          <td><span class="cert-status status-planned">Planned</span></td>
+        </tr>
+        <tr>
+          <td><span class="cert-year">YR 2</span></td>
+          <td><div class="cert-name">Negotiation: A Strategic Playbook</div><div class="cert-provider">Yale University</div></td>
+          <td>Coursera</td>
+          <td><span class="cert-status status-planned">Planned</span></td>
+        </tr>
+        <tr>
+          <td><span class="cert-year">YR 3</span></td>
+          <td><div class="cert-name">Finance & Accounting for Business Managers</div><div class="cert-provider">4-day intensive MDP</div></td>
+          <td>IIM Calcutta</td>
+          <td><span class="cert-status status-planned">Planned</span></td>
+        </tr>
+        <tr>
+          <td><span class="cert-year">YR 4</span></td>
+          <td><div class="cert-name">Digital Transformation & Organisational Design</div></td>
+          <td>MIT Sloan / GetSmarter</td>
+          <td><span class="cert-status status-planned">Planned</span></td>
+        </tr>
+        <tr>
+          <td><span class="cert-year">YR 7</span></td>
+          <td><div class="cert-name">Executive General Management Programme</div><div class="cert-provider">Crown jewel credential</div></td>
+          <td>IIM Ahmedabad</td>
+          <td><span class="cert-status status-planned">Planned</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="container">
+    <span class="section-label">Moments</span>
+    <h2 class="section-title" style="color:var(--navy);margin-bottom:12px;">Gallery</h2>
+    <p style="margin-bottom:40px;">Professional milestones, international visits, and team moments.</p>
+    <div class="gallery-grid">
+      <div class="gallery-item featured">
+        <div class="gallery-icon">🇩🇪</div>
+        <div>Germany — Train the Trainer Visits</div>
+        <div class="gallery-caption">Add your photos from Germany trips here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-icon">🏆</div>
+        <div>Best Employee Awards</div>
+        <div class="gallery-caption">Award ceremony photos</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-icon">👤</div>
+        <div>Professional Headshot</div>
+        <div class="gallery-caption">Your professional photograph</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-icon">🏭</div>
+        <div>Sesotec Systems</div>
+        <div class="gallery-caption">Programs and systems delivered</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-icon">📜</div>
+        <div>AERB Type Approval</div>
+        <div class="gallery-caption">Compliance milestone documentation</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-icon">🎓</div>
+        <div>IIIT Bangalore — ML & AI</div>
+        <div class="gallery-caption">Graduation / certification</div>
+      </div>
+    </div>
+    <p style="text-align:center;margin-top:24px;font-size:0.85rem;color:var(--muted);">
+      📸 Replace placeholder boxes with real photographs when you host this website.
+    </p>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-inner">
+      <span class="section-label">Get in Touch</span>
+      <h2>Let's connect.</h2>
+      <p>Open to conversations about program management leadership, industrial automation, and operations roles. Also happy to connect with peers in manufacturing and inspection systems.</p>
+      <div class="contact-links">
+        <a href="mailto:gandharjoshi@gmail.com" class="contact-link">✉️ gandharjoshi@gmail.com</a>
+        <a href="https://linkedin.com/in/gandhar-joshi" target="_blank" class="contact-link">💼 LinkedIn</a>
+        <a href="https://gjwale.blogspot.com" target="_blank" class="contact-link">✍️ Blog</a>
+        <a href="tel:+919403888101" class="contact-link">📞 +91 9403888101</a>
+      </div>
+      <div class="contact-location">📍 Pune, Maharashtra, India</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 <span>Gandhar Joshi</span> · Pune, Maharashtra · Built with purpose.</p>
+</footer>
+
+</body>
+</html>
