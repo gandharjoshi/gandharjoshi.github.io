@@ -6,7 +6,6 @@
 <title>Gandhar Joshi — Program Management & Applications</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  /* ── Reset & Base ── */
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
     --navy:      #1A2E46;
@@ -40,7 +39,6 @@
     font-size: 16px;
   }
 
-  /* ── Typography ── */
   h1, h2, h3, h4 { font-family: var(--font-display); line-height: 1.2; }
   h1 { font-size: clamp(2.8rem, 7vw, 5.5rem); letter-spacing: -0.02em; }
   h2 { font-size: clamp(1.8rem, 4vw, 2.8rem); }
@@ -49,11 +47,9 @@
 
   .mono { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold); }
 
-  /* ── Layout ── */
   .container { max-width: var(--max-w); margin: 0 auto; padding: 0 24px; }
   section { padding: var(--section-pad); }
 
-  /* ── NAV ── */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     background: rgba(26, 46, 70, 0.96);
@@ -79,7 +75,6 @@
   }
   .nav-links a:hover { color: var(--white); }
 
-  /* ── HERO ── */
   #hero {
     min-height: 100vh;
     background: var(--navy-deep);
@@ -128,12 +123,12 @@
   }
   .hero-photo-placeholder {
     width: 100%; aspect-ratio: 1;
-    background: linear-gradient(135deg, rgba(42,82,152,0.4), rgba(184,146,42,0.2));
     border-radius: 12px; margin-bottom: 20px;
     display: flex; align-items: center; justify-content: center;
     border: 1px solid rgba(255,255,255,0.08);
-    font-size: 4rem; color: rgba(255,255,255,0.3);
+    overflow: hidden;
   }
+  .hero-photo-placeholder img { width: 100%; height: 100%; object-fit: cover; }
   .hero-card-name {
     color: var(--white); font-family: var(--font-display);
     font-size: 1.2rem; margin-bottom: 4px;
@@ -157,7 +152,6 @@
   }
   .btn-ghost:hover { border-color: rgba(255,255,255,0.6); color: var(--white); }
 
-  /* Geometric accent */
   .hero-geo {
     position: absolute; right: -120px; bottom: -80px;
     width: 500px; height: 500px;
@@ -171,7 +165,6 @@
     border-radius: 50%;
   }
 
-  /* ── ABOUT ── */
   #about { background: var(--cream); }
   .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
   .section-label {
@@ -190,7 +183,6 @@
   .pillar-title { font-weight: 600; color: var(--navy); font-size: 0.95rem; margin-bottom: 4px; }
   .pillar-desc { font-size: 0.875rem; color: var(--muted); line-height: 1.6; }
 
-  /* ── METRICS ── */
   #metrics { background: var(--navy); }
   .metrics-header { text-align: center; margin-bottom: 60px; }
   .metrics-header .section-label { color: var(--gold); }
@@ -212,7 +204,6 @@
   .metric-num span { color: var(--gold); }
   .metric-desc { font-size: 0.85rem; color: rgba(255,255,255,0.45); text-transform: uppercase; letter-spacing: 0.06em; }
 
-  /* ── TIMELINE ── */
   #timeline { background: var(--white); }
   .timeline-header { margin-bottom: 60px; }
   .timeline-wrap { position: relative; padding-left: 32px; }
@@ -241,7 +232,6 @@
   }
   .tag.gold { background: var(--gold-lt); color: var(--gold); }
 
-  /* ── ACHIEVEMENTS ── */
   #achievements { background: var(--cream); }
   .ach-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
   .ach-card {
@@ -254,7 +244,6 @@
   .ach-title { font-weight: 600; color: var(--navy); font-size: 1rem; margin-bottom: 8px; }
   .ach-text { font-size: 0.875rem; color: var(--muted); line-height: 1.6; }
 
-  /* ── COMPETENCIES ── */
   #competencies { background: var(--white); }
   .comp-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
   .comp-item {
@@ -265,7 +254,6 @@
   }
   .comp-item:hover { background: var(--navy); color: var(--white); border-color: var(--navy); }
 
-  /* ── ROADMAP ── */
   #roadmap { background: var(--navy-deep); }
   .roadmap-header { text-align: center; margin-bottom: 60px; }
   .roadmap-header h2 { color: var(--white); }
@@ -284,7 +272,6 @@
   .phase-desc { font-size: 0.85rem; color: rgba(255,255,255,0.5); line-height: 1.7; }
   .phase-divider { height: 1px; background: rgba(255,255,255,0.08); margin: 16px 0; }
 
-  /* ── CERTIFICATIONS ── */
   #certifications { background: var(--cream); }
   .cert-table { width: 100%; border-collapse: collapse; }
   .cert-table th {
@@ -307,7 +294,6 @@
   .status-done { background: #E6F4EE; color: #0F6E56; }
   .status-progress { background: var(--gold-lt); color: var(--gold); }
 
-  /* ── GALLERY ── */
   #gallery { background: var(--white); }
   .gallery-grid {
     display: grid;
@@ -331,7 +317,6 @@
   .gallery-icon { font-size: 1.8rem; margin-bottom: 8px; opacity: 0.4; }
   .gallery-caption { font-size: 0.78rem; color: var(--muted); margin-top: 6px; }
 
-  /* ── CONTACT ── */
   #contact { background: var(--navy); }
   .contact-inner { max-width: 700px; margin: 0 auto; text-align: center; }
   #contact h2 { color: var(--white); margin-bottom: 16px; }
@@ -348,16 +333,6 @@
   .contact-link:hover { background: rgba(255,255,255,0.12); color: var(--white); }
   .contact-location { font-size: 0.85rem; color: rgba(255,255,255,0.35); }
 
-  /* ── FOOTER ── */
-  footer {
-    background: var(--navy-deep); padding: 28px 24px;
-    border-top: 1px solid rgba(255,255,255,0.06);
-    text-align: center;
-  }
-  footer p { font-size: 0.8rem; color: rgba(255,255,255,0.25); }
-  footer span { color: var(--gold); }
-
-  /* ── RESPONSIVE ── */
   @media (max-width: 900px) {
     .hero-grid { grid-template-columns: 1fr; }
     .hero-card { display: none; }
@@ -387,7 +362,6 @@
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <div class="nav-inner">
     <a href="#hero" class="nav-logo">GJ<span>.</span></a>
@@ -402,7 +376,6 @@
   </div>
 </nav>
 
-<!-- HERO -->
 <section id="hero">
   <div class="hero-geo"></div>
   <div class="hero-grid">
@@ -437,52 +410,44 @@
       </div>
     </div>
     <div class="hero-card">
-      <div class="hero-photo-placeholder">👤</div>
+      <div class="hero-photo-placeholder">
+          <img src="Formal beard photo white.jpg" alt="Gandhar Joshi Professional Headshot">
+      </div>
       <div class="hero-card-name">Gandhar Joshi</div>
       <div class="hero-card-role">Manager — Program Management & Applications<br>Sesotec India Pvt. Ltd · Pune</div>
     </div>
   </div>
 </section>
 
-<!-- ABOUT -->
 <section id="about">
   <div class="container">
     <div class="about-grid">
       <div class="about-text">
-        <span class="section-label">About</span>
+        <span class="section-label">Executive Value Statement</span>
         <h2 class="section-title">The bridge between engineering precision and operational delivery.</h2>
-        <p>I'm a Program Management and Applications Manager at Sesotec India, with 7+ years of end-to-end ownership across conveyor and inspection system programs. I was promoted to Manager in April 2026 — having progressed through five internal roles since joining as a Technical Support Engineer in July 2019.</p>
-        <p style="margin-top:16px;">My work sits at the intersection of three disciplines: running complex multi-crore hardware programs, advising customers on whether and how our machines fit their production lines, and navigating India's regulatory frameworks — including independently securing AERB Type Approval for the Raycon EX2.</p>
-        <p style="margin-top:16px;">I hold a Post-Graduate Diploma in ML & AI from IIIT Bangalore and am actively working toward applying data-driven decision-making in operations leadership. Currently pursuing Six Sigma Green Belt (CSSC-accredited, lifetime validity).</p>
+        <p>Technical Program Manager with 7+ years of end-to-end ownership across conveyor and inspection system programs at Sesotec India[cite: 3]. Promoted from Assistant Manager to Manager within 2 years - completing a 5-role progression over 7 years at Sesotec India and awarded 'Best Employee' 4 times for process improvement initiatives and vendor development outcomes[cite: 3]. Combines deep application consulting expertise—advising customers on machine fitment and solution design—with hands-on execution across engineering, quality, production, and global stakeholder teams[cite: 3].</p>
+        <p style="margin-top:16px;">My focus is on acting as the critical bridge between complex global engineering standards and seamless, localized factory floor execution—ensuring absolute regulatory compliance, zero-defect factory acceptance, and accelerated time-to-market[cite: 4].</p>
+        <p style="margin-top:16px;">Proven ability to independently navigate high-stakes regulatory frameworks (AERB) and audit cross-continental engineering designs[cite: 3]. Experienced in SAP, Salesforce, and Power Automate for scheduling, risk tracking, and process automation[cite: 3].</p>
       </div>
       <div class="pillars">
-        <span class="section-label">Five Pillars of Value</span>
+        <span class="section-label">Strategic Capabilities</span>
         <div class="pillar">
-          <div class="pillar-title">Single-Threaded Program Ownership</div>
-          <div class="pillar-desc">One accountable owner across engineering, production, quality, and vendor supply chain — eliminating cross-departmental silos.</div>
+          <div class="pillar-title">Single-Threaded Accountability</div>
+          <div class="pillar-desc">I eliminate cross-departmental silos by taking absolute ownership of multi-crore industrial portfolios[cite: 4]. By aligning engineering, production, quality, and vendor supply chains under one centralized operational strategy, I systematically reduce inter-departmental friction and communication breakdowns[cite: 4].</div>
         </div>
         <div class="pillar">
-          <div class="pillar-title">Application Consulting</div>
-          <div class="pillar-desc">Primary technical advisor between customers and product — translating production line requirements into machine fitment decisions.</div>
+          <div class="pillar-title">Cross-Continental Engineering & Compliance</div>
+          <div class="pillar-desc">Scaling a manufacturing footprint requires aligning international R&D with local realities[cite: 4]. I specialize in auditing European/German engineering blueprints and executing vital design rectifications to make them structurally safe and commercially viable for the Indian market[cite: 4]. This extends to navigating high-stakes statutory frameworks, independently authoring documentation, and securing uncompromising regulatory approvals (such as AERB)[cite: 4].</div>
         </div>
         <div class="pillar">
-          <div class="pillar-title">Regulatory & Compliance Mastery</div>
-          <div class="pillar-desc">Independently navigating AERB frameworks to legally unlock commercial deployment across India.</div>
-        </div>
-        <div class="pillar">
-          <div class="pillar-title">Cross-Continental Engineering Alignment</div>
-          <div class="pillar-desc">Auditing German R&D blueprints and executing critical design rectifications for the Indian manufacturing ecosystem.</div>
-        </div>
-        <div class="pillar">
-          <div class="pillar-title">Process Automation & Industry 4.0</div>
-          <div class="pillar-desc">Building Power Automate, SAP, and Salesforce ecosystems that replace manual reporting with real-time leadership visibility.</div>
+          <div class="pillar-title">Industry 4.0 & Process Automation</div>
+          <div class="pillar-desc">Growth cannot rely on manual administration[cite: 4]. I replace legacy reporting bottlenecks with automated enterprise digital workflows using Power Automate, SAP, and Salesforce[cite: 4]. This provides executive leadership with real-time visibility into program health and factory bottlenecks, enabling data-driven decision-making[cite: 4].</div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- METRICS -->
 <section id="metrics">
   <div class="container">
     <div class="metrics-header">
@@ -518,7 +483,6 @@
   </div>
 </section>
 
-<!-- TIMELINE -->
 <section id="timeline">
   <div class="container">
     <div class="timeline-header">
@@ -529,10 +493,10 @@
 
       <div class="timeline-item">
         <div class="tl-dot"></div>
-        <div class="tl-year">APR 2026 — PRESENT</div>
-        <div class="tl-role">Manager — Program Management & Applications</div>
-        <div class="tl-company">Sesotec India Pvt. Ltd · Pune · On-site</div>
-        <div class="tl-desc">Leading end-to-end program delivery, application consulting, compliance readiness, and team development. Managing cross-functional teams across engineering, quality, production, and vendor supply chain.</div>
+        <div class="tl-year">JUL 2019 — PRESENT</div>
+        <div class="tl-role">Manager — Technical Program, Planning & Applications</div>
+        <div class="tl-company">Sesotec India Pvt. Ltd</div>
+        <div class="tl-desc">Promoted to Manager within 2 years—the fastest promotion in the India team at the time—and awarded 'Best Employee' 4 times for process improvement initiatives and vendor development outcomes. Represented Sesotec India in Germany 4 times under the 'Train the Trainer' initiative—integrated global planning best practices into local program frameworks, directly improving cross-border coordination efficiency.</div>
         <div class="tl-tags">
           <span class="tag gold">Current Role</span>
           <span class="tag">Program Management</span>
@@ -543,60 +507,10 @@
 
       <div class="timeline-item">
         <div class="tl-dot navy"></div>
-        <div class="tl-year">APR 2024 — MAR 2026 · 2 YRS</div>
-        <div class="tl-role">Assistant Manager — Projects, Planning & Applications</div>
-        <div class="tl-company">Sesotec India Pvt. Ltd · Pune · On-site</div>
-        <div class="tl-desc">Owned ₹3 Cr+ programs across 80+ systems. Identified the Raycon EX2 blueprint discrepancy. Secured AERB Type Approval. Built Power Automate documentation platform. Represented Sesotec India in Germany 4 times.</div>
-        <div class="tl-tags">
-          <span class="tag">SAP & Salesforce</span>
-          <span class="tag">Power Automate</span>
-          <span class="tag">AERB Type Approval</span>
-          <span class="tag">Vendor Management</span>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="tl-dot navy"></div>
-        <div class="tl-year">APR 2021 — MAR 2024 · 3 YRS</div>
-        <div class="tl-role">Senior Project and Application Engineer</div>
-        <div class="tl-company">Sesotec India Pvt. Ltd · Pune</div>
-        <div class="tl-desc">Lead service coordinator and operations & executions department coordinator. Managed cross-functional project execution, customer application consulting, and ERP workflow restructuring.</div>
-        <div class="tl-tags">
-          <span class="tag">Project Execution</span>
-          <span class="tag">Service Coordination</span>
-          <span class="tag">Tableau</span>
-          <span class="tag">Business Analysis</span>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="tl-dot navy"></div>
-        <div class="tl-year">AUG 2019 — MAR 2021 · 1 YR 8 MOS</div>
-        <div class="tl-role">Application Engineer</div>
-        <div class="tl-company">Sesotec India Pvt. Ltd · Pune</div>
-        <div class="tl-desc">Customer application feasibility assessment, machine fitment consulting, and early-stage program coordination. Built foundation in inspection system applications and stakeholder management.</div>
-        <div class="tl-tags">
-          <span class="tag">Application Engineering</span>
-          <span class="tag">Microsoft Power BI</span>
-          <span class="tag">Stakeholder Management</span>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="tl-dot navy"></div>
-        <div class="tl-year">JUL 2019 · 1 MO</div>
-        <div class="tl-role">Technical Support Engineer</div>
-        <div class="tl-company">Sesotec India Pvt. Ltd · Pune/Pimpri-Chinchwad</div>
-        <div class="tl-desc">Entry point at Sesotec India. Salesforce-based support operations.</div>
-        <div class="tl-tags"><span class="tag">Salesforce</span></div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="tl-dot navy"></div>
         <div class="tl-year">2021 — 2022</div>
-        <div class="tl-role">Post Graduate Diploma — Machine Learning & AI</div>
+        <div class="tl-role">Post Graduate Diploma — Machine Learning & Artificial Intelligence</div>
         <div class="tl-company">UpGrad / IIIT Bangalore</div>
-        <div class="tl-desc">Completed while working full-time at Sesotec India. Credential earned; actively seeking to apply ML & AI skills in a professional context.</div>
+        <div class="tl-desc">Credential earned; actively seeking to apply ML & AI skills in a professional context.</div>
         <div class="tl-tags"><span class="tag">ML & AI</span><span class="tag">IIIT Bangalore</span></div>
       </div>
 
@@ -605,15 +519,32 @@
         <div class="tl-year">2015 — 2019</div>
         <div class="tl-role">B.E. — Electronics & Telecommunication Engineering</div>
         <div class="tl-company">Government College of Engineering, Aurangabad</div>
-        <div class="tl-desc">Foundation in electronics, signal processing, and telecommunication systems. Internships at BSNL (2018) and Modi Innovations — PLC programming and industrial automation (2017).</div>
-        <div class="tl-tags"><span class="tag">Electronics & Telecom</span><span class="tag">PLC Programming</span><span class="tag">BSNL</span></div>
+        <div class="tl-desc"></div>
+        <div class="tl-tags"><span class="tag">Electronics & Telecom</span></div>
+      </div>
+      
+      <div class="timeline-item">
+        <div class="tl-dot navy"></div>
+        <div class="tl-year">2018</div>
+        <div class="tl-role">Internship</div>
+        <div class="tl-company">BSNL</div>
+        <div class="tl-desc">Electronics & Telecom domain. Exposure to telecom infrastructure, switching systems, and network operations.</div>
+        <div class="tl-tags"><span class="tag">Telecom</span></div>
+      </div>
+      
+       <div class="timeline-item">
+        <div class="tl-dot navy"></div>
+        <div class="tl-year">2017</div>
+        <div class="tl-role">Internship</div>
+        <div class="tl-company">Modi Innovations</div>
+        <div class="tl-desc">PLC programming and industrial automation. Hands-on experience with ladder logic, I/O configuration, and control system implementation.</div>
+        <div class="tl-tags"><span class="tag">PLC Programming</span></div>
       </div>
 
     </div>
   </div>
 </section>
 
-<!-- ACHIEVEMENTS -->
 <section id="achievements">
   <div class="container">
     <span class="section-label">Highlights</span>
@@ -622,38 +553,37 @@
       <div class="ach-card">
         <div class="ach-icon">🇩🇪</div>
         <div class="ach-title">Cross-Continental Engineering Audit — Raycon EX2</div>
-        <div class="ach-text">Identified a critical blueprint design discrepancy in the Raycon EX2 developed by the German R&D team. Successfully escalated and obtained cross-continental engineering rectification — preventing costly field failure before commercial deployment.</div>
+        <div class="ach-text">Identified a critical blueprint design discrepancy in the specially engineered Raycon EX2 developed by the German R&D team; successfully escalated and obtained cross-continental engineering rectification[cite: 3].</div>
       </div>
       <div class="ach-card">
         <div class="ach-icon">📋</div>
         <div class="ach-title">AERB Type Approval — Raycon EX2</div>
-        <div class="ach-text">Independently authored the full compliance framework for India's Atomic Energy Regulatory Board. Secured 3-year Type Approval with zero rejections — enabling commercial deployment of the Raycon EX2 across India.</div>
+        <div class="ach-text">Independently authored and structured a comprehensive compliance framework for the Raycon EX2; successfully secured high-stakes AERB Type Approval (valid 3 years), enabling commercial deployment across India[cite: 3].</div>
       </div>
       <div class="ach-card">
         <div class="ach-icon">⚡</div>
         <div class="ach-title">Power Automate Platform — Program Visibility</div>
-        <div class="ach-text">Built a centralised documentation and planning platform using Power Automate — replacing manual reporting and saving ~5 hrs/week while giving global teams real-time visibility into program health and factory bottlenecks.</div>
+        <div class="ach-text">Built a centralized program documentation and planning platform using Power Automate, reducing manual status reporting effort by ~5 hrs/week and improving real-time visibility for global teams[cite: 3].</div>
       </div>
       <div class="ach-card">
         <div class="ach-icon">🏆</div>
         <div class="ach-title">Best Employee — 4 Times</div>
-        <div class="ach-text">Awarded Best Employee four times for process improvement initiatives and vendor development outcomes that produced measurable impact on program timelines, rework reduction (~40%), and cross-team escalation management (~30% reduction).</div>
+        <div class="ach-text">Awarded 'Best Employee' 4 times for process improvement initiatives and vendor development outcomes[cite: 3].</div>
       </div>
       <div class="ach-card">
         <div class="ach-icon">✈️</div>
         <div class="ach-title">Germany — Train the Trainer (4 Visits)</div>
-        <div class="ach-text">Represented Sesotec India in Germany four times under the Train the Trainer initiative. Integrated global planning best practices into local program frameworks, directly improving cross-border coordination efficiency.</div>
+        <div class="ach-text">Represented Sesotec India in Germany 4 times under the 'Train the Trainer' initiative—integrated global planning best practices into local program frameworks, directly improving cross-border coordination efficiency[cite: 3].</div>
       </div>
       <div class="ach-card">
         <div class="ach-icon">🚀</div>
-        <div class="ach-title">Fastest Promotion — Assistant Manager</div>
-        <div class="ach-text">Promoted to Assistant Manager within 3.5 years — the fastest promotion in the Sesotec India team at that time. Further promoted to Manager in April 2026, completing a 5-role progression in 7 years.</div>
+        <div class="ach-title">Fastest Promotion — Manager</div>
+        <div class="ach-text">Promoted to Manager within 2 years—the fastest promotion in the India team at the time[cite: 3].</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- COMPETENCIES -->
 <section id="competencies">
   <div class="container">
     <span class="section-label">Skills</span>
@@ -668,18 +598,13 @@
       <div class="comp-item">Power Automate</div>
       <div class="comp-item">Vendor Coordination</div>
       <div class="comp-item">Demand Forecasting</div>
-      <div class="comp-item">Process Optimisation</div>
+      <div class="comp-item">Process Optimization</div>
       <div class="comp-item">Documentation & Governance</div>
       <div class="comp-item">Data & Reporting</div>
-      <div class="comp-item">Cross-functional Leadership</div>
-      <div class="comp-item">ERP Workflow Restructuring</div>
-      <div class="comp-item">Service Gatekeeping</div>
-      <div class="comp-item">ML & AI (IIIT-B)</div>
     </div>
   </div>
 </section>
 
-<!-- ROADMAP -->
 <section id="roadmap">
   <div class="container">
     <div class="roadmap-header">
@@ -728,7 +653,6 @@
   </div>
 </section>
 
-<!-- CERTIFICATIONS -->
 <section id="certifications">
   <div class="container">
     <span class="section-label">Learning Roadmap</span>
@@ -790,7 +714,6 @@
   </div>
 </section>
 
-<!-- GALLERY -->
 <section id="gallery">
   <div class="container">
     <span class="section-label">Moments</span>
@@ -834,7 +757,6 @@
   </div>
 </section>
 
-<!-- CONTACT -->
 <section id="contact">
   <div class="container">
     <div class="contact-inner">
@@ -852,7 +774,6 @@
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <p>© 2026 <span>Gandhar Joshi</span> · Pune, Maharashtra · Built with purpose.</p>
 </footer>
